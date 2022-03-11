@@ -17,15 +17,17 @@
       <Task 
       v-for="(task, i) in $store.state.tasks"
       :key="i"
- task="task" />
+      :task="task" />
+    </div>
+    <div class="button-wrap" style="display: flex">
+    <button @click="delete_completed" class="delete">Delete All Done Tasks</button>
+    <button @click="delete_all" class="delete">Delete ALL</button>
     </div>
   </main>
 </template>
 
 <script>
-import Task from '../components/Task.vue';
 export default {
-  components: { Task },
   data() {
     return {
       newTask: ""
@@ -38,6 +40,12 @@ export default {
         this.$store.commit('ADD_TASK', this.newTask);
         this.newTask = "";
       }
+    },
+    delete_completed () {
+      this.$store.commit('DELETE_COMPLETED');
+    },
+    delete_all () {
+      this.$store.commit('DELETE_ALL');
     }
   }
 }

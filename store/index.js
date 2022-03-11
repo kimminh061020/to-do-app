@@ -12,5 +12,11 @@ export const mutations = {
     },
     TOGGLE_TASK (state, task) {
         task.done = !task.done;
+    }, 
+    DELETE_COMPLETED (state) {
+        state.tasks = state.tasks.filter(t => !t.done)
+    }, 
+    DELETE_ALL (state) {
+        state.tasks = [];
     }
 }
